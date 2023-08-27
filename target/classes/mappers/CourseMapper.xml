@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lgd.dao.CourseDAO">
+    <resultMap id="courseMap" type="Course">
+        <id column="course_id" property="courseId"/>
+        <result column="course_name" property="courseName"/>
+<!--        <result property="students"/>-->
+<!--        <collection property="students" ofType="Student">-->
+<!--            <result column="sid" property="stuId"/>-->
+<!--            <result column="sname" property="stuName"/>-->
+<!--            <result column="sage" property="stuAge"/>-->
+<!--        </collection>-->
+        <collection property="students" select="com.lgd.dao.StudentDAO.queryStudentsByCourseId" column="course_id"/>
+    </resultMap>
+    <select id="queryCourseById" resultMap="courseMap">
+        SELECT course_id,course_name
+        FROM courses
+        WHERE course_id = #{courseId};
+    </select>
+</mapper>

@@ -11,9 +11,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Clazz {
-    private int classId;
-    private String className;
-    private String classDesc;
-    //private List<Student> stus;
+public class Course {
+    private int courseId;
+    private String courseName;
+    private List<Student> students;
 }

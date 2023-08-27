@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lgd.dao.StudentDAO">
+    <resultMap id="studentMap" type="Student">
+        <id column="sid" property="stuId"/>
+        <result column="sname" property="stuName"/>
+        <result column="sage" property="stuAge"/>
+<!--        <result column="cid" property="clazz.classId"/>-->
+<!--        <result column="cname" property="clazz.className"/>-->
+<!--        <result column="cdesc" property="clazz.classDesc"/>-->
+        <association property="clazz" select="com.lgd.dao.ClassDAO.queryClass" column="scid"/>
+    </resultMap>
+    <select id="listStudentsByCid" resultMap="studentMap">
+        select sid,sname,sage,scid from students where scid=#{cid}
+    </select>
+    <select id="queryStudentBySid" resultMap="studentMap">
+        SELECT sid,sname,sage,scid
+        FROM students
+        WHERE sid=#{sid}
+    </select>
+    <resultMap id="studentMap2" type="Student">
+        <id column="sid" property="stuId"/>
+        <result column="sname" property="stuName"/>
+        <result column="sage" property="stuAge"/>
+    </resultMap>
+    <select id="queryStudentsByCourseId" resultMap="studentMap2">
+        SELECT s.sid,sname,sage FROM students s INNER JOIN grade g
+        ON s.sid=g.sid WHERE g.cid=#{courseId}
+    </select>
+</mapper>

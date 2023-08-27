@@ -8,21 +8,16 @@
         values (#{userName},#{userPwd},#{userRealname},#{userImg})
     </insert>
     <resultMap id="userMap" type="User">
-        <id column="user_id" property="userId"></id>
-        <id column="user_name" property="userName"></id>
-        <id column="user_pwd" property="userPwd"></id>
-        <id column="user_realname" property="userRealname"></id>
-        <id column="user_img" property="userImg"></id>
-        <id column="detail_id" property="detail.detailId"></id>
-        <id column="user_addr" property="detail.userAddr"></id>
-        <id column="user_tel" property="detail.userTel"></id>
-        <id column="user_desc" property="detail.userDesc"></id>
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="user_pwd" property="userPwd"/>
+        <result column="user_realname" property="userRealname"/>
+        <result column="user_img" property="userImg"/>
+        <association property="detail" select="com.lgd.dao.DetailDAO.queryDetailByUid" column="user_id"/>
     </resultMap>
     <select id="queryUser" resultMap="userMap">
-        select user_id,user_name,user_pwd,user_realname,user_img,detail_id,user_addr,user_tel,user_desc
-        from users u
-        INNER JOIN details d
-        on u.user_id = d.uid
-        where u.user_name=#{username}
+        select user_id,user_name,user_pwd,user_realname,user_img
+        from users
+        where user_name=#{username}
     </select>
 </mapper>

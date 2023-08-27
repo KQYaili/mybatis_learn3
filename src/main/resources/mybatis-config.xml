@@ -6,6 +6,9 @@
     <typeAliases>
         <typeAlias type="com.lgd.pojo.User" alias="User"></typeAlias>
         <typeAlias type="com.lgd.pojo.Detail" alias="Detail"></typeAlias>
+        <typeAlias type="com.lgd.pojo.Clazz" alias="Clazz"></typeAlias>
+        <typeAlias type="com.lgd.pojo.Student" alias="Student"></typeAlias>
+        <typeAlias type="com.lgd.pojo.Course" alias="Course"></typeAlias>
     </typeAliases>
     <environments default="mysql">
         <environment id="mysql">
@@ -22,5 +25,8 @@
     <mappers>
         <mapper resource="mappers/UserMapper.xml"></mapper>
         <mapper resource="mappers/DetailMapper.xml"></mapper>
+        <mapper resource="mappers/ClassMapper.xml"></mapper>
+        <mapper resource="mappers/StudentMapper.xml"></mapper>
+        <mapper resource="mappers/CourseMapper.xml"></mapper>
     </mappers>
 </configuration>
