@@ -43,6 +43,12 @@ public class MyBatisUtil {
         SqlSession sqlSession = getSqlSession(true);
         return sqlSession.getMapper(c);
     }
-
+    public static void close(){
+        SqlSession sqlSession=local.get();
+        if(sqlSession!=null){
+            sqlSession.close();
+            local.set(null);
+        }
+    }
 }
 

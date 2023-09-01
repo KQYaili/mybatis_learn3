@@ -9,13 +9,14 @@
         <typeAlias type="com.lgd.pojo.Clazz" alias="Clazz"></typeAlias>
         <typeAlias type="com.lgd.pojo.Student" alias="Student"></typeAlias>
         <typeAlias type="com.lgd.pojo.Course" alias="Course"></typeAlias>
+        <typeAlias type="com.lgd.pojo.Member" alias="Member"></typeAlias>
     </typeAliases>
     <environments default="mysql">
         <environment id="mysql">
             <transactionManager type="JDBC"></transactionManager>
-            <dataSource type="POOLED">
-                <property name="driver" value="${driver}"/>
-                <property name="url" value="${url}"/>
+            <dataSource type="com.lgd.utils.DruidDataSourceFactory">
+                <property name="driverClass" value="${driver}"/>
+                <property name="jdbcUrl" value="${url}"/>
                 <property name="username" value="${username}"/>
                 <property name="password" value="${password}"/>
             </dataSource>
@@ -28,5 +29,6 @@
         <mapper resource="mappers/ClassMapper.xml"></mapper>
         <mapper resource="mappers/StudentMapper.xml"></mapper>
         <mapper resource="mappers/CourseMapper.xml"></mapper>
+        <mapper resource="mappers/MemberMapper.xml"></mapper>
     </mappers>
 </configuration>
